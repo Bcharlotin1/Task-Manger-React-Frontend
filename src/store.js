@@ -1,5 +1,9 @@
-import { applyMiddleware, createStore } from "redux";
-import thunk from "redux-thunk"
-import userReducer from "../public/reducers/userReducer";
+import { applyMiddleware, createStore, combineReducers } from "redux";
 
-export default createStore(userReducer, applyMiddleware(thunk))
+import thunk from "redux-thunk"
+import userReducer from "./reducers/userReducer";
+import projecReducer from "./reducers/projectReducer"
+
+
+let rootReducer = combineReducers({user: userReducer, projects: projecReducer })
+export default createStore(rootReducer, applyMiddleware(thunk))
