@@ -11,8 +11,7 @@ export default function projectReducer(state=[], action) {
             return [...state, action.payload]; 
             
         case DELETE_PROJECT:
-        debugger
-            return { project: state.projects.filter((project) => project !== action.payload) };
+            return state.filter((project) => project !== action.payload) ;
         
             default:
             return state;

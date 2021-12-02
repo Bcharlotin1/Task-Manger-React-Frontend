@@ -8,9 +8,9 @@ export default function Nav() {
     
             <Link to='/user'>Profile</Link>
 
-            <Link to='/user/projects'>Projects</Link>
+            <Link to='/projects'>Projects</Link>
 
-            <Link to='/user/projects/new'>Create Project</Link>
+            <Link to='projects/new'>Create Project</Link>
 
         </div>
     )

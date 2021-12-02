@@ -24,7 +24,7 @@ export function createProject(project, navigate){
         .then( project => { 
             
             dispatch({type:ADD_PROJECT, payload: project})})
-            navigate("/user/projects")
+            navigate("/projects")
     }
 }
 
@@ -32,16 +32,10 @@ export function deleteProject(project, navigate){
     return dispatch => {
         fetch(`http://localhost:3000/projects/${project.id}`,{
             method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            body: JSON.stringify(null)
         })
-        .then(r => r.json())
-        .then( project => { 
-            console.log(project)
+        .then(r => { 
+            console.log(r)
             dispatch({type:DELETE_PROJECT, payload: project})})
-            navigate("/user/projects")
+            navigate("/projects")
     }
 }
