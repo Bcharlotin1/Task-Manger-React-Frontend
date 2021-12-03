@@ -10,7 +10,7 @@ export default function Nav() {
 
             <Link to='/projects'>Projects</Link>
 
-            <Link to='projects/new'>Create Project</Link>
+            <Link to='/projects/new'>Create Project</Link>
 
         </div>
     )

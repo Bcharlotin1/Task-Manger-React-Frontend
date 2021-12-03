@@ -1,10 +1,14 @@
-import { SET_USER } from "../actions/constants";
+import { SET_USER, ADD_USER } from "../actions/constants";
 
-export default function userReducer(state=[], actions) {
-    switch(actions.type){
+export default function userReducer(state=[], action) {
+    switch(action.type){
         case SET_USER:
            
-            return actions.payload; 
+            return action.payload; 
+            
+        case ADD_USER:
+           
+            return [...state, action.payload]; 
 
         default:
             return state;
