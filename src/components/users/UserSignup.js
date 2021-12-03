@@ -17,15 +17,21 @@ export default function UserSignup() {
     function handleSubmit(event){
         event.preventDefault()
         //thakes conttne to redux
-        dispatch(createUser({
-            username: username,
-            email: email,
-            password: password,
-        }, navigate))
-        
-        setUsername("")
-        setEmail("")
-        setPassword("")
+        if(password.length >= 8){
+            dispatch(createUser({
+                username: username,
+                email: email,
+                password: password,
+            }, navigate))
+
+            setUsername("")
+            setEmail("")
+            setPassword("")
+        }else{
+            alert("your password must be 8 characters long")
+
+        }
+       
     }
     return (
         <div>
@@ -48,6 +54,7 @@ export default function UserSignup() {
             <input 
             type="password"
             value={password}
+            minlength="8"
             onChange={(event) => setPassword(event.target.value)}
             > 
             </input>
