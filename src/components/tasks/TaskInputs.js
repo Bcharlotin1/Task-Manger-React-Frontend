@@ -10,7 +10,7 @@ export default function TaskInputs() {
     const [description, setDescription] = useState("")
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const project_id = 1
+ 
 
     console.log(description)
 
