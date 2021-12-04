@@ -1,24 +1,29 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { createProject } from "../../actions/projectAction"
+import { createTask } from "../../actions/taskAction"
 import { useNavigate } from "react-router"
 
-export default function ProjectInput() {
-    
+
+export default function TaskInputs() {
     const [title, setTitle] = useState("")
     //retuns ana array of 2 item  1.  inital stat 2.  funtion to change that value
     const [description, setDescription] = useState("")
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const project_id = 1
 
     console.log(description)
 
     function handleSubmit(event){
         event.preventDefault()
-        //thakes conttne to redux
-        dispatch(createProject({
+        
+        dispatch(createTask({
             title: title,
-            description: description
+            description: description,
+            
+            //completion_rate ussseeeffeect to get all task,  finnd the tasskees for  a particular  projeect, then devide them by 100 to distributee precentages,  eavee tasj chould have the same %
+
+            //project id neees to bee sent through th get associated may be able to get once i determin dynamic routes neeed to send an whol projeect  objact to the back end 
         }, navigate))
 
         setTitle("")
@@ -27,7 +32,7 @@ export default function ProjectInput() {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <h3>New Project</h3>
+                <h3>New Task</h3>
                 <label>Title</label>
                 <input 
                 type="text"
@@ -49,3 +54,5 @@ export default function ProjectInput() {
     )
     
 }
+
+

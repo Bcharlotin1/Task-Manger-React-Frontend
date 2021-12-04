@@ -6,7 +6,7 @@ export function fetchUser(){
         fetch('http://localhost:3000/current_user',  
        { headers: {
             "Content-Type": "application/json",
-            Authorization: localStorage.getItem("token"),
+             Authorization: localStorage.getItem("token"),
           },
         })
           .then((res) => {
@@ -56,4 +56,36 @@ export function createUser(user, navigate){
         .catch((err) => console.error(err));
             
          }
+}
+
+export function loginUser(user, navigate){
+    
+  return dispatch => {
+      console.log(user)
+      fetch("http://localhost:3000/login", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify({user})
+      })
+      .then((res) => {
+          if (res.ok) {
+          console.log(res.headers.get("Authorization"));
+          localStorage.setItem("token", res.headers.get("Authorization"));
+          console.log(res.json)
+          return res.json();
+          } else {
+          throw new Error(res);
+          }
+      })
+      .then((user) => {
+          console.dir(user)
+          dispatch({type: SET_USER, payload: user})
+      
+          navigate("/user")
+      })
+      .catch((err) => console.error(err));
+          
+       }
 }

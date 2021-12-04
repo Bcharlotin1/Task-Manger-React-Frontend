@@ -1,4 +1,4 @@
-import {SET_PROJECTS, ADD_PROJECT, DELETE_PROJECT } from "../actions/constants";
+import {SET_PROJECTS, ADD_PROJECT, DELETE_PROJECT, UPDATE_PROJECT} from "../actions/constants";
 
 export default function projectReducer(state=[], action) {
     switch(action.type){
@@ -13,7 +13,11 @@ export default function projectReducer(state=[], action) {
         case DELETE_PROJECT:
             return state.filter((project) => project !== action.payload) ;
         
-            default:
+        case UPDATE_PROJECT:
+debugger
+            return state
+
+        default:
             return state;
     }
     
