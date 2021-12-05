@@ -32,7 +32,7 @@ export default function ProjectDisplay() {
                 {projects.map(p =>{
                 return(
                     <li key={p.id}>
-                        <Link to={`${p.title}/tasks`}>{p.title}</Link>
+                        
                         
                         <p>{p.description}</p>
                         <p>{p. completion_rate}</p>
