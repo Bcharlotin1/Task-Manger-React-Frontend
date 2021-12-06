@@ -16,7 +16,6 @@ export default function taskReducer(state=[], action) {
             return state.filter((task) => task !== action.payload) ;
         
         case UPDATE_TASK:
-debugger
             return state
 
         default:
