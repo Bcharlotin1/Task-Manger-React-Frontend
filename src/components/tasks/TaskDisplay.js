@@ -6,7 +6,7 @@ import { Link, useParams } from 'react-router-dom';
 import './Task.css';
 
 
-export default function ProjectDisplay() {
+export default function TaskDisplay() {
 
     const params = useParams()
 
@@ -96,5 +96,6 @@ export default function ProjectDisplay() {
         </div>
     )
 }
+
 
 
