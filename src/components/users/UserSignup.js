@@ -5,6 +5,7 @@ import { createUser } from '../../actions/userAction'
 import { useNavigate } from "react-router"
 
 export default function UserSignup() {
+    
     const [username, setUsername] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")

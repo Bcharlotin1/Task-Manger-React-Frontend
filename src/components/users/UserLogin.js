@@ -5,9 +5,8 @@ import { loginUser } from '../../actions/userAction'
 import { useNavigate } from "react-router"
 
 export default function UserSignup() {
-    const [username, setUsername] = useState("")
-    //retuns ana array of 2 item  1.  inital stat 2.  funtion to change that value
-   
+    
+    const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -16,14 +15,14 @@ export default function UserSignup() {
 
     function handleSubmit(event){
         event.preventDefault()
-        //thakes conttne to redux
+       
         if(password.length >= 8){
             dispatch(loginUser({
-                username: username,
+                email: email,
                 password: password,
             }, navigate))
 
-            setUsername("")
+            setEmail("")
             setPassword("")
         }else{
             alert("your password must be 8 characters long")
@@ -35,11 +34,13 @@ export default function UserSignup() {
         <div>
             <h1>User login</h1>
             <form onSubmit={handleSubmit}>
-            <label>Username</label>
+          
+
+            <label>Email</label>
             <input 
             type="text"
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
             ></input>
 
 
@@ -47,7 +48,7 @@ export default function UserSignup() {
             <input 
             type="password"
             value={password}
-            minlength="8"
+            minLength="8"
             onChange={(event) => setPassword(event.target.value)}
             > 
             </input>
