@@ -14,7 +14,7 @@ export default function projectReducer(state=[], action) {
             return state.filter((project) => project !== action.payload) ;
         
         case UPDATE_PROJECT:
-debugger
+
             return state
 
         default:
