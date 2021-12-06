@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { createProject } from "../../actions/projectAction"
 import { useNavigate } from "react-router"
-import '/Users/biancacharlotin/Development/code/React-App/task-manager-frontend-copy/src/Form.css'
+import '/Users/biancacharlotin/Development/code/React-App/task-manager-frontend/src/Form.css'
 
 export default function ProjectInput() {
     
