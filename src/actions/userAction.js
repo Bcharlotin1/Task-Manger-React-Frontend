@@ -27,65 +27,81 @@ export function fetchUser(){
 
 
 export function createUser(user, navigate){
-    
     return dispatch => {
-        console.log(user)
+        
         fetch("http://localhost:3000/signup", {
-            method: "POST",
+            method: "post",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({user})
+            body: JSON.stringify({user}),
         })
-        .then((res) => {
-            if (res.ok) {
-            console.log(res.headers.get("Authorization"));
-            localStorage.setItem("token", res.headers.get("Authorization"));
-            console.log(res.json)
-            return res.json();
-            } else {
-            throw new Error(res);
-            }
-        })
-        .then((user) => {
-            console.dir(user)
-            dispatch({type: SET_USER, payload: user})
-        
-            navigate("/user")
-        })
-        .catch((err) => console.error(err));
-            
-         }
+            .then((res) => {
+                if (res.ok) {
+                    console.log(res.headers.get("Authorization"));
+                    localStorage.setItem("token", res.headers.get("Authorization"));
+                    return res.json();
+                } else {
+                    throw new Error(res);
+                }
+            })
+            .then((user) => {
+                console.dir(user)
+                debugger
+                dispatch({type: SET_USER, payload: user.data})
+                navigate("/user")
+            })
+            .catch((err) => console.error(err));
+    }
+
 }
 
 export function loginUser(user, navigate){
-    
   return dispatch => {
-      console.log(user)
-      fetch("http://localhost:3000/login", {
-          method: "POST",
-          headers: {
-              "Content-Type": "application/json",
-          },
-          body: JSON.stringify({user})
+    fetch("http://localhost:3000/login", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({user}),
       })
-      .then((res) => {
+        .then((res) => {
           if (res.ok) {
-          console.log(res.headers.get("Authorization"));
-          localStorage.setItem("token", res.headers.get("Authorization"));
-          console.log(res.json)
-          return res.json();
+            console.log(res.headers.get("Authorization"));
+            localStorage.setItem("token", res.headers.get("Authorization"));
+            return res.json();
           } else {
-          throw new Error(res);
+            return res.text().then((text) => Promise.reject(text));
           }
+        })
+        .then((user) => {
+            console.dir(user)
+        
+            dispatch({type: SET_USER, payload: user.data})
+            navigate("/user")
+        })
+        .catch((err) => console.error(err));
+  }
+    
+}
+
+export function logoutUser(user){
+    fetch("http://localhost:3000/logout", {
+        method: "delete",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: localStorage.getItem("token"),
+        },
       })
-      .then((user) => {
-          console.dir(user)
-          dispatch({type: SET_USER, payload: user})
-      
-          navigate("/user")
-      })
-      .catch((err) => console.error(err));
-          
-       }
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          } else {
+            return res.json().then((json) => Promise.reject(json));
+          }
+        })
+        .then((json) => {
+          console.dir(json);
+        })
+        .catch((err) => console.error(err));
 }
