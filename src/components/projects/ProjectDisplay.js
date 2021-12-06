@@ -1,75 +1,121 @@
-import { useState } from "react"
-import { useDispatch } from "react-redux"
-import { createProject } from "../../actions/projectAction"
-import { useNavigate } from "react-router"
-import '/Users/biancacharlotin/Development/code/React-App/task-manager-frontend-copy/src/Form.css'
 
-export default function ProjectInput() {
-    
-    const [title, setTitle] = useState("")
-    
-    const [description, setDescription] = useState("")
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux'
+import { fetchProjects, deleteProject } from '../../actions/projectAction';
 
-    console.log(description)
+import { Link, useNavigate} from 'react-router-dom';
 
-    function handleSubmit(event){
-        event.preventDefault()
+
+export default function ProjectDisplay() {
+
+  
+
+  const projects = useSelector(state => state.projects)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    dispatch(fetchProjects())
+  }, [])
+
+  function handleClick(project) {
+    dispatch(deleteProject(project, navigate))
+  }
+  function getColor() {
+    return "hsl(" + 360 * Math.random() + ',' +
+      (25 + 70 * Math.random()) + '%,' +
+      (85 + 10 * Math.random()) + '%)'
+  }
+
+  return (
+    <div>
      
-        dispatch(createProject({
-            title: title,
-            description: description,
-            completion_rate: 0
-        }, navigate))
+        <div className="projects-section">
+          <div className="projects-section-header">
+            <p>Projects</p>
 
-        setTitle("")
-        setDescription("")
-    }
-    return (
-        <div>
-             <div className="projects-section">
-              <div className="projects-section-header">
-              <p>New Project</p>
-            
-              <p className="time">December 12</p>
-            
-              </div>
-              <div className="projects-section-line">
-         
-              <div className="view-actions">
-              <button className="view-btn list-view" title="List View">
-            
-              </button>
-          
-              </div>
-              
-              </div>
-              <div>
-                <form onSubmit={handleSubmit}>
-                    <label>Title</label>
-                    <input 
-                    type="text" 
-                    
-                    placeholder="Your title.." 
-                    value={title}
-                    onChange={(event) => setTitle(event.target.value)}/>
-                    
+            <p className="time">December 12</p>
 
-                    <label>Description</label>
-                    <textarea
-                        placeholder="Write something.."
-                        style={{ height: 200 }}
-                        value={description}
-                        onChange={(event) => setDescription(event.target.value)}
-                    />
-                    <input type="submit"></input>
-                `</form>
-                </div>
+          </div>
+          <div className="projects-section-line">
+
+            <div className="view-actions">
+
+
+
             </div>
+            <Link to="/projects/new">
+            <button className="add-btn" title="Add New Project">
+              <svg
+                className="btn-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                width={16}
+                height={16}
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={3}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <line x1={12} y1={5} x2={12} y2={19} />
+                <line x1={5} y1={12} x2={19} y2={12} />
+              </svg>
+            </button>
+            </Link>
+          </div>
+          {/* ---------------------Body------------------------ */}
+            {projects.map(p => {
+            return (
+              <div >
+
+                <div className="project-box-wrapper">
+                  <div className="project-box" style={{ backgroundColor: `${getColor()}` }}>
+                    <div className="project-box-header">
+                      <span>{Date(p.created_at)}</span>
+                      <div className="more-wrapper">
+                        <button className="project-btn-more">
+                          <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="feather feather-more-vertical">
+                            <circle cx={12} cy={12} r={1} />
+                            <circle cx={12} cy={5} r={1} />
+                            <circle cx={12} cy={19} r={1} />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                    <div className="project-box-content-header">
+                      <Link to={`/projects/${p.id}/tasks`} lassName="box-content-header">{p.title}
+                      </Link> 
+
+                      <p className="box-content-subheader">{p.description}</p>
+                    </div>
+                    <div className="box-progress-wrapper">
+                      <p className="box-progress-header">Progress</p>
+                      <div className="box-progress-bar">
+                        <span className="box-progress" style={{ width: `${p.completion_rate}%`, backgroundColor: '#ff942e' }} />
+                      </div>
+                      <p className="box-progress-percentage">{p.completion_rate}%</p>
+                    </div>
+                    <div className="project-box-footer">
+                      <div className="participants">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" alt="participant" />
+                        <img src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTB8fG1hbnxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60" alt="participant" />
+
+                      </div>
+                      <button className="days-left" style={{ color: '#ff942e' }} onClick={() => { handleClick(p) }}>
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )
+          })}
         </div>
-    )
-    
+    </div>
+  )
 }
+
+
 
 
