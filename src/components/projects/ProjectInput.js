@@ -2,11 +2,12 @@ import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { createProject } from "../../actions/projectAction"
 import { useNavigate } from "react-router"
+import '/Users/biancacharlotin/Development/code/React-App/task-manager-frontend-copy/src/Form.css'
 
 export default function ProjectInput() {
     
     const [title, setTitle] = useState("")
-    //retuns ana array of 2 item  1.  inital stat 2.  funtion to change that value
+    
     const [description, setDescription] = useState("")
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -15,10 +16,11 @@ export default function ProjectInput() {
 
     function handleSubmit(event){
         event.preventDefault()
-        //thakes conttne to redux
+     
         dispatch(createProject({
             title: title,
-            description: description
+            description: description,
+            completion_rate: 0
         }, navigate))
 
         setTitle("")
@@ -26,26 +28,47 @@ export default function ProjectInput() {
     }
     return (
         <div>
-            <form onSubmit={handleSubmit}>
-                <h3>New Project</h3>
-                <label>Title</label>
-                <input 
-                type="text"
-                value={title}
-                onChange={(event) => setTitle(event.target.value)}>
+             <div className="projects-section">
+              <div className="projects-section-header">
+              <p>New Project</p>
+            
+              <p className="time">December 12</p>
+            
+              </div>
+              <div className="projects-section-line">
+         
+              <div className="view-actions">
+              <button className="view-btn list-view" title="List View">
+            
+              </button>
+          
+              </div>
+              
+              </div>
+              <div>
+                <form onSubmit={handleSubmit}>
+                    <label>Title</label>
+                    <input 
+                    type="text" 
+                    
+                    placeholder="Your title.." 
+                    value={title}
+                    onChange={(event) => setTitle(event.target.value)}/>
+                    
 
-                </input>
-
-                <label>Description</label>
-                <textarea
-                type="text" 
-              c
-                onChange={(event) => setDescription(event.target.value)}>
-                </textarea>
-
-                <input type="submit"></input>
-            </form>
+                    <label>Description</label>
+                    <textarea
+                        placeholder="Write something.."
+                        style={{ height: 200 }}
+                        value={description}
+                        onChange={(event) => setDescription(event.target.value)}
+                    />
+                    <input type="submit"></input>
+                `</form>
+                </div>
+            </div>
         </div>
     )
     
 }
+
