@@ -5,7 +5,7 @@ export function fetchTasks(){
         fetch('http://localhost:3000/tasks/')
         .then(r => r.json())
         .then(tasks => { 
-           
+            console.log(tasks)
             dispatch({type:SET_TASK, payload: tasks})})
         
     }
