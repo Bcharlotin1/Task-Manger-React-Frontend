@@ -7,6 +7,7 @@ import '/Users/biancacharlotin/Development/code/React-App/task-manager-frontend-
 export default function ProjectInput() {
     
     const [title, setTitle] = useState("")
+    
     const [description, setDescription] = useState("")
     const dispatch = useDispatch()
     const navigate = useNavigate()
