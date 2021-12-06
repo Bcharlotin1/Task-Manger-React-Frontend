@@ -17,7 +17,7 @@ export default function ProjectDisplay() {
     }, [])
 
     function handleClick(project){
-        debugger
+        
         dispatch(deleteProject(project, navigate))
     }
    

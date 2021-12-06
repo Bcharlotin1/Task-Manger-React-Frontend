@@ -13,6 +13,7 @@ import Home from './components/Home';
 import { Link, Route, Routes } from 'react-router-dom';
 import Nav from './components/SideNav/Nav';
 
+import DisplayTest from './components/projects/DisplayTest';
 
 
 function App() {
@@ -28,6 +29,10 @@ function App() {
         <Route path="/login" element={<UserLogin />} />
         <Route path="/user" element={<UserDisplay />} />
         <Route path="/projects" element={<ProjectDisplay />} />
+       
+        <Route path="/projects/:id" element={<ProjectDisplay />} />
+        <Route path="/projects/:id" element={<DisplayTest />} />
+
         <Route path="/projects/new" element={<ProjectInput />} />
         <Route path="/projects/tasks" element={<TaskDisplay />} />
         <Route path="/projects/tasks/new" element={<TaskInputs />} />

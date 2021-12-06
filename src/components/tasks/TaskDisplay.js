@@ -51,7 +51,7 @@ export default function ProjectDisplay() {
                         onChange={onChange}/>
                         {t.title}
                     </label>
-                    <p>{t.description}</p>
+                  
                     <button onClick={()=>{handleClick(t)}}>Delete</button>
                     
                 </div>
