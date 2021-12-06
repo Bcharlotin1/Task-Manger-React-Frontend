@@ -7,7 +7,7 @@ import './Task.css';
 
 
 export default function TaskDisplay() {
-
+    
     const params = useParams()
 
     const allTasks = useSelector(state => state.tasks)

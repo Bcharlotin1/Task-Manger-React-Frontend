@@ -3,12 +3,11 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchProjects, deleteProject } from '../../actions/projectAction';
 import { fetchUser } from '../../actions/userAction';
-import { Link, useNavigate} from 'react-router-dom';
-
+import { Link, useNavigate, useParams} from 'react-router-dom';
 
 
 export default function ProjectDisplay() {
-
+  
   
   const userProjects = useSelector(state => state.user)
   const allProjects = useSelector(state => state.projects)
@@ -50,7 +49,7 @@ export default function ProjectDisplay() {
 
 
             </div>
-            <Link to="/projects/new">
+            <Link to="/projects/new" >
             <button className="add-btn" title="Add New Project">
               <svg
                 className="btn-icon"
@@ -90,7 +89,7 @@ export default function ProjectDisplay() {
                       </div>
                     </div>
                     <div className="project-box-content-header">
-                      <Link to={`/projects/${p.id}/tasks`} lassName="box-content-header">{p.title}
+                      <Link to={`/projects/tasks`} lassName="box-content-header">{p.title}
                       </Link> 
 
                       <p className="box-content-subheader">{p.description}</p>
@@ -108,6 +107,14 @@ export default function ProjectDisplay() {
                         <img src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTB8fG1hbnxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60" alt="participant" />
 
                       </div>
+                      <Link to={{
+                      pathname: "/projects/edit",
+                      params: {p} // your data array of objects
+                        }}>
+                      <button className="days-left" style={{ color: '#ff942e' }}>
+                        Update
+                      </button>
+                      </Link>
                       <button className="days-left" style={{ color: '#ff942e' }} onClick={() => { handleClick(p) }}>
                         Delete
                       </button>
