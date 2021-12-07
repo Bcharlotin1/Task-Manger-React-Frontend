@@ -83,8 +83,8 @@ export default function TaskDisplay() {
 
                                     <div>
                                         <input type="checkbox" id={t.id}></input>
-                                        <label for={t.id}>{t.title}</label>
-                                        <button classname="task_delete_button" onClick={() => { handleClick(t) }}>Delete</button>
+                                        <label htmlFor={t.id}>{t.title}</label>
+                                        <button className="task_delete_button" onClick={() => { handleClick(t) }}>Delete</button>
                                     </div>
 
                                 </div>

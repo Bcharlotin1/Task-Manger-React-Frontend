@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { deleteTask } from '../../actions/taskAction';
@@ -16,7 +15,7 @@ export default function AllTasks() {
 
     const filteredArray  = allTasks.filter(function(task){
         return userProject.filter(function(userProject){
-           return userProject.id == task.project_id;
+           return userProject.id === task.project_id;
         })
     });
     
@@ -24,16 +23,7 @@ export default function AllTasks() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const [complete, setToComplete] = useState("")
-   
 
- 
-    function onChange(event) {
-     
-        setToComplete(event.target.value)
-        // setIsChecked(!isChecked)
-        //complete  is  sesnd thee completion rate and i want this add to the project 
-    }
     function handleClick(task) {
 
         dispatch(deleteTask(task, navigate))
@@ -61,16 +51,16 @@ export default function AllTasks() {
                     </div>
 
                     {/* ----------------------------------- */}
-                    <form key={uuidv4()} id="task_form">
+                    <form id="task_form">
                
                         {filteredArray.map(t => {
 
                             return (
                                 <div>
 
-                                    <div>
+                                    <div key={uuidv4()}>
                                         <input type="checkbox" id={t.id}></input>
-                                        <label for={t.id}>{t.title}</label>
+                                        <label htmlFor={t.id}>{t.title}</label>
                                         <button className="task_delete_button" onClick={() => { handleClick(t) }}>Delete</button>
                                     </div>
 

@@ -11,7 +11,7 @@ export function fetchTasks(){
     }
 }
 
-export function createTask(tasks, navigate){
+export function createTask(task, navigate){
     // debugger
     return dispatch => {
         fetch('http://localhost:3000/tasks/',{
@@ -20,13 +20,13 @@ export function createTask(tasks, navigate){
                 "Content-Type": "application/json",
                 "Accept": "application/json"
             },
-            body: JSON.stringify({tasks})
+            body: JSON.stringify({task})
         })
         .then(r => r.json())
         .then(task => { 
             
             dispatch({type:ADD_TASK, payload: task})})
-            navigate(`/projects/tasks`)
+            navigate(`/projects/${task.project_id}/tasks`)
            
     }
 }
@@ -40,7 +40,8 @@ export function deleteTask(task, navigate){
         .then(r => { 
             console.log(r)
             dispatch({type:DELETE_TASK, payload: task})})
-            navigate(":id/tasks")
+           
+            navigate(`/projects/${task.project_id}/tasks`)
     }
 }
 

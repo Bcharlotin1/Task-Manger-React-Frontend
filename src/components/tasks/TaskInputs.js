@@ -23,10 +23,8 @@ export default function TaskInputs() {
         dispatch(createTask({
             title: title,
             project_id: currentProject.id,
-            user_id: currentProject.user_id,
             completion_rate: 25
-            //completion_rate ussseeeffeect to get all task,  finnd the tasskees for  a particular  projeect, then devide them by 100 to distributee precentages,  eavee tasj chould have the same %
-
+            
            
         }, navigate))
 
