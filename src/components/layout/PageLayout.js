@@ -23,7 +23,7 @@ export default function PageLayout() {
     <div className="app-header">
       <div className="app-header-left">
         {/* <span className="app-icon" /> */}
-       <div className="app-icon"><img src={logo}/></div>
+       <div className="app-icon"><img alt="game conssroler" src={logo}/></div>
     
         <span></span>
         <p className="app-name"></p>
@@ -40,7 +40,7 @@ export default function PageLayout() {
       <div className="app-header-right">
 
         <button className="profile-btn">
-          <img src="https://assets.codepen.io/3306515/IMG_2025.jpg" />
+          <img  alt="line" src="https://assets.codepen.io/3306515/IMG_2025.jpg" />
           <span>{user.username}</span>
         </button>
       </div>

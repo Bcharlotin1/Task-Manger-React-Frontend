@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { fetchTasks, deleteTask } from '../../actions/taskAction';
+import { deleteTask } from '../../actions/taskAction';
+import { v4 as uuidv4 } from 'uuid';
 import './Task.css';
 
 export default function AllTasks() {
@@ -20,9 +21,7 @@ export default function AllTasks() {
    
 
 
-    useEffect(() => {
-        dispatch(fetchTasks())
-    }, [])
+
 
  
     function onChange(event) {
@@ -58,9 +57,9 @@ export default function AllTasks() {
                     </div>
 
                     {/* ----------------------------------- */}
-                    <form id="task_form">
+                    <form key={uuidv4()} id="task_form">
                
-                        {allTasks.map(t => {
+                        {projectTasks.map(t => {
 
                             return (
                                 <div>
@@ -68,7 +67,7 @@ export default function AllTasks() {
                                     <div>
                                         <input type="checkbox" id={t.id}></input>
                                         <label for={t.id}>{t.title}</label>
-                                        <button classname="task_delete_button" onClick={() => { handleClick(t) }}>Delete</button>
+                                        <button className="task_delete_button" onClick={() => { handleClick(t) }}>Delete</button>
                                     </div>
 
                                 </div>

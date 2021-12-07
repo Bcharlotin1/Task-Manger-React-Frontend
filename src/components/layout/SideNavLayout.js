@@ -1,4 +1,4 @@
-import { Link, NavLink } from 'react-router-dom';
+import {  NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logoutUser } from '../../actions/userAction';
 
@@ -8,7 +8,6 @@ export default function SideNavLayout() {
     const dispatch = useDispatch()
 
     function handleLogout(){
-        debugger
         dispatch(logoutUser())
     }
 
@@ -16,7 +15,7 @@ export default function SideNavLayout() {
        <div className="app-sidebar">
         
             <NavLink to='/projects' className="app-sidebar-link">
-                <svg className="link-icon" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="feather feather-home">
+                <svg className="link-icon" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" >
                     <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
                     <polyline points="9 22 9 12 15 12 15 22" />
                 </svg>
@@ -29,9 +28,9 @@ export default function SideNavLayout() {
             </NavLink>
 
             
-            <Link to="/" onClick={()=>(handleLogout())}>
+            <NavLink to="/" onClick={()=>(handleLogout())}>
             <svg className="link-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 17l5-5-5-5M19.8 12H9M10 3H4v18h6"/></svg>
-            </Link>
+            </NavLink>
 
 
             

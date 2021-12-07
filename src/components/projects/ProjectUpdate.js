@@ -1,8 +1,9 @@
 
 
-import { useForm } from "react-hook-form";
-import { useSelector, useDispatch,  } from 'react-redux'
-import { useParams, useNavigate } from "react-router";
+import { useForm } from 'react-hook-form';
+import { useSelector, useDispatch,  } from 'react-redux';
+import { useParams, useNavigate } from 'react-router';
+import {  updateProject } from '../../actions/projectAction';
 
 
 
@@ -15,7 +16,7 @@ export default function ProjectUpdate() {
     const { id } = useParams()
     const currentProjectId = parseInt(id)
     const allProjects = useSelector(state => state.projects)
-    const currentProject = allProjects.filter(project => project.id === currentProjectId)
+    const currentProject = allProjects.find(project => project.id === currentProjectId)
 
    
     const dispatch = useDispatch()
@@ -23,25 +24,26 @@ export default function ProjectUpdate() {
  
 
     const preloadedValues = {
-        title: 'allProjects[0].title',
-        description:' allProjects[0].description',
+        id: currentProject.id,
+        title: currentProject.title,
+        description: currentProject.description,
         user_id: user.id
 
     }
     const { register, handleSubmit } = useForm({
         defaultValues: preloadedValues
-    });
+    })
 
 
     const onSubmit = (data) => {
-    debugger
-        console.log(data)
-    };
-console.log(allProjects)
+    
+        dispatch(updateProject(data, navigate))
+    }
 
-  return(
+
+    return(
       <div>
-           <form onSubmit={()=>(handleSubmit(onSubmit))}>
+           <form onSubmit={handleSubmit(onSubmit)}>
                     <label>Title</label>
                     <input 
                     {...register('title', { required: true })}

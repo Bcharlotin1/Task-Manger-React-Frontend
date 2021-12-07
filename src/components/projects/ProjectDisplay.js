@@ -2,10 +2,12 @@
 import { useSelector, useDispatch } from 'react-redux'
 import {  deleteProject } from '../../actions/projectAction';
 import { Link, useNavigate} from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 
 export default function ProjectDisplay() {
   
+
   
   const user = useSelector(state => state.user)
   const allProjects = useSelector(state => state.projects)
@@ -24,7 +26,8 @@ export default function ProjectDisplay() {
       (25 + 70 * Math.random()) + '%,' +
       (85 + 10 * Math.random()) + '%)'
   }
-  console.log(user)
+
+
   return (
     <div>
      
@@ -65,7 +68,7 @@ export default function ProjectDisplay() {
           {/* ---------------------Body------------------------ */}
             {projects.map(p => {
             return (
-              <div >
+              <div key={uuidv4()} >
 
                 <div className="project-box-wrapper">
                   <div className="project-box" style={{ backgroundColor: `${getColor()}` }}>
@@ -82,7 +85,7 @@ export default function ProjectDisplay() {
                       </div>
                     </div>
                     <div className="project-box-content-header">
-                      <Link to={`/projects/${p.id}/tasks`} lassName="box-content-header">{p.title}
+                      <Link to={`/projects/${p.id}/tasks`} className="box-content-header">{p.title}
                       </Link> 
 
                       <p className="box-content-subheader">{p.description}</p>

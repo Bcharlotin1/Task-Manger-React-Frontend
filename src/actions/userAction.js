@@ -12,7 +12,7 @@ export function fetchUser(){
           .then((res) => {
             if (res.ok) {
               return res.json();
-            } else if (res.status == "401") {
+            } else if (res.status === "401") {
               throw new Error("Unauthorized Request. Must be signed in.");
             }
           })
