@@ -4,42 +4,20 @@ import logo from '../../images/logo3.png'; // with import
 
 import ProjectDisplay from '../projects/ProjectDisplay';
 import ProjectInput from '../projects/ProjectInput'
+import ProjectUpdate from '../projects/ProjectUpdate';
 import TaskDisplay from '../tasks/TaskDisplay'
 import TaskInput from '../tasks/TaskInputs'
+import AllTasks from '../tasks/AllTasks';
+
 import { useLocation, Routes, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 
 export default function PageLayout() {
+  
   const user = useSelector(state => state.user)
 
     
-  const {pathname} = useLocation()
-  // const match =  matchPath("/projects/*/task", {
-  //   path: "/projects/:id/task",
-  //   exact: true,
-  //   strict: false
-  // });
-
-  // function headerDisplay(){
-  //   if (pathname === "/projects" || pathname === "/projects/") {
-  
-  //     return (<ProjectDisplay />)
-  //   }
-  //   if(pathname === "/projects/new"){
-  //     return (<ProjectInput />)
-  //   }
-  //   if(pathname === "/projects/tasks"){
-  
-  //     return (<TaskDisplay />)
-  //   }
-  //   if(pathname === "/projects/tasks/new"){
-  //     return (<TaskInput />)
-  //   }
-  // }
-  
-  
-  
   return (
     <div className="app-container">
     <div className="app-header">
@@ -73,10 +51,13 @@ export default function PageLayout() {
     {/* <ProjectDisplay /> */}
           {/* {headerDisplay()} */}
         <Routes>
+          
           <Route path="/" element={<ProjectDisplay />} />
           <Route path="new" element={<ProjectInput />} />
+          <Route path=":id/edit" element={<ProjectUpdate />} />
           <Route path=":id/tasks" element={<TaskDisplay />} />
           <Route path=":id/tasks/new" element={<TaskInput />} />
+          <Route path="/tasks" element={<AllTasks />} />
         </Routes>
       
         {/* ---------------------------------- */}

@@ -2,16 +2,17 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { fetchTasks, deleteTask } from '../../actions/taskAction';
-import { Link,  useParams} from 'react-router-dom';
+import { Link, useParams} from 'react-router-dom';
 import './Task.css';
 
 export default function TaskDisplay() {
     
-    const user = useSelector(state => state.user)
+
 
     const { id } = useParams()
+    const projectTaskId = parseInt(id)
     const allTasks = useSelector(state => state.tasks)
-    const projectTasks =  allTasks.filter((task) => task.project_id === id)
+    const projectTasks =  allTasks.filter((task) => (task.project_id === projectTaskId))
     
     
     const dispatch = useDispatch()
@@ -25,7 +26,7 @@ export default function TaskDisplay() {
         dispatch(fetchTasks())
     }, [])
 
-    console.log(id)
+
     function onChange(event) {
         // debugger
         setToComplete(event.target.value)
@@ -37,7 +38,7 @@ export default function TaskDisplay() {
         dispatch(deleteTask(task, navigate))
     }
 
-    //  console.log(tasks)
+
 
     return (
 

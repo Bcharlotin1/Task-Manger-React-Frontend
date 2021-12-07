@@ -28,11 +28,9 @@ function App() {
   
   
       <Routes>
-      <Route path="/projects/edit" element={<ProjectUpdate />} />
-      <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<UserLogin />} />
         <Route path="/signup" element={<UserSignup />} />
-        <Route path="/tasks" element={<AllTasks />} />
         <Route path="projects/*" element={<PageLayout />} />
      
       </Routes>

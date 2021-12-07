@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { fetchTasks, deleteTask } from '../../actions/taskAction';
-import { Link} from 'react-router-dom';
 import './Task.css';
 
 export default function AllTasks() {
@@ -11,7 +10,7 @@ export default function AllTasks() {
 
   
     const allTasks = useSelector(state => state.tasks)
-    // const projectTasks =  allTasks.filter((task) => task.project_id === id)
+    const projectTasks =  allTasks.filter((task) => task.project_id === user.id)
     
     
     const dispatch = useDispatch()
@@ -37,14 +36,14 @@ export default function AllTasks() {
         dispatch(deleteTask(task, navigate))
     }
 
-    //  console.log(tasks)
+ 
 
     return (
 
         <div>
             <div className="projects-section">
                 <div className="projects-section-header">
-                    <p>Tasks</p>
+                    <p>All Tasks</p>
 
                     <p className="time">December 12</p>
 
@@ -54,25 +53,8 @@ export default function AllTasks() {
                     <div className="view-actions">
                         
                     </div>
-                    <Link to="/projects/tasks/new">
-                        <button className="add-btn" title="Add New Project">
-                            <svg
-                                className="btn-icon"
-                                xmlns="http://www.w3.org/2000/svg"
-                                width={16}
-                                height={16}
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth={3}
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                            >
-                                <line x1={12} y1={5} x2={12} y2={19} />
-                                <line x1={5} y1={12} x2={19} y2={12} />
-                            </svg>
-                        </button>
-                    </Link>
+                  
+                     
                     </div>
 
                     {/* ----------------------------------- */}

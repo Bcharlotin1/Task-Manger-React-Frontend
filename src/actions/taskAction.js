@@ -5,7 +5,7 @@ export function fetchTasks(){
         fetch('http://localhost:3000/tasks/')
         .then(r => r.json())
         .then(tasks => { 
-            console.log(tasks)
+    
             dispatch({type:SET_TASK, payload: tasks})})
         
     }
@@ -26,7 +26,7 @@ export function createTask(task, navigate){
         .then(task => { 
             
             dispatch({type:ADD_TASK, payload: task})})
-            navigate("/projects/tasks")
+            navigate(":id/tasks")
            
     }
 }
@@ -40,7 +40,7 @@ export function deleteTask(task, navigate){
         .then(r => { 
             console.log(r)
             dispatch({type:DELETE_TASK, payload: task})})
-            navigate("/projects/tasks")
+            navigate(":id/tasks")
     }
 }
 
@@ -58,6 +58,6 @@ export function editTask(task, navigate){
         .then(task => { 
             
             dispatch({type:UPDATE_TASK, payload: task})})
-            navigate("/projects/tasks")
+            navigate(":id/tasks")
     }
 }

@@ -2,25 +2,30 @@
 
 import { useForm } from "react-hook-form";
 import { useSelector, useDispatch,  } from 'react-redux'
+import { useParams, useNavigate } from "react-router";
 import { updateProject } from '../../actions/projectAction';
 
 
 
 
-export default function ProjectUpdate(params) {
+export default function ProjectUpdate() {
     
     const user = useSelector(state => state.user)
-
-    // const userProjects = useSelector(state => state.user)
+    
+    const { id } = useParams()
+    const currentProjectId = parseInt(id)
     const allProjects = useSelector(state => state.projects)
-  
-    const dispatch = useDispatch()
+    const currentProject = allProjects.find(project => project.id === currentProjectId)
 
+   
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
  
 
     const preloadedValues = {
         title: 'allProjects[0].title',
-        description:' allProjects[0].description'
+        description:' allProjects[0].description',
+        user_id: user.id
 
     }
     const { register, handleSubmit } = useForm({
@@ -29,10 +34,10 @@ export default function ProjectUpdate(params) {
 
 
     const onSubmit = (data) => {
-    
+    debugger
         console.log(data)
     };
-
+console.log(currentProject)
 
   return(
       <div>

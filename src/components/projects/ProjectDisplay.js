@@ -103,10 +103,7 @@ export default function ProjectDisplay() {
                         <img src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTB8fG1hbnxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60" alt="participant" />
 
                       </div>
-                      <Link to={{
-                      pathname: "/projects/edit",
-                      params: {p} // your data array of objects
-                        }}>
+                      <Link to={`/projects/${p.id}/edit`}>
                       <button className="days-left" style={{ color: '#ff942e' }}>
                         Update
                       </button>
