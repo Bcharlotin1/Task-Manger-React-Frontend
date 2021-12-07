@@ -6,9 +6,13 @@ import ProjectDisplay from '../projects/ProjectDisplay';
 import ProjectInput from '../projects/ProjectInput'
 import TaskDisplay from '../tasks/TaskDisplay'
 import TaskInput from '../tasks/TaskInputs'
-import { useLocation, matchPath } from 'react-router-dom';
+import { useLocation, Routes, Route } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 
 export default function PageLayout() {
+  const user = useSelector(state => state.user)
+
     
   const {pathname} = useLocation()
   // const match =  matchPath("/projects/*/task", {
@@ -17,21 +21,22 @@ export default function PageLayout() {
   //   strict: false
   // });
 
-  function headerDisplay(){
-    if (pathname === "/projects" || pathname === "/projects/") {
-      return (<ProjectDisplay />)
-    }
-    if(pathname === "/projects/new"){
-      return (<ProjectInput />)
-    }
-    if(pathname === "/projects/tasks"){
+  // function headerDisplay(){
+  //   if (pathname === "/projects" || pathname === "/projects/") {
   
-      return (<TaskDisplay />)
-    }
-    if(pathname === "/projects/tasks/new"){
-      return (<TaskInput />)
-    }
-  }
+  //     return (<ProjectDisplay />)
+  //   }
+  //   if(pathname === "/projects/new"){
+  //     return (<ProjectInput />)
+  //   }
+  //   if(pathname === "/projects/tasks"){
+  
+  //     return (<TaskDisplay />)
+  //   }
+  //   if(pathname === "/projects/tasks/new"){
+  //     return (<TaskInput />)
+  //   }
+  // }
   
   
   
@@ -58,15 +63,21 @@ export default function PageLayout() {
 
         <button className="profile-btn">
           <img src="https://assets.codepen.io/3306515/IMG_2025.jpg" />
-          <span>Aybüke C.</span>
+          <span>{user.username}</span>
         </button>
       </div>
       
     </div>
     <div className="app-content">
         <SideNavLayout />
-    
-          {headerDisplay()}
+    {/* <ProjectDisplay /> */}
+          {/* {headerDisplay()} */}
+        <Routes>
+          <Route path="/" element={<ProjectDisplay />} />
+          <Route path="new" element={<ProjectInput />} />
+          <Route path=":id/tasks" element={<TaskDisplay />} />
+          <Route path=":id/tasks/new" element={<TaskInput />} />
+        </Routes>
       
         {/* ---------------------------------- */}
   

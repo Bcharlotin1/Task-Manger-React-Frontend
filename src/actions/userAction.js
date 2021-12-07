@@ -49,7 +49,7 @@ export function createUser(user, navigate){
                 console.dir(user)
                 debugger
                 dispatch({type: SET_USER, payload: user.data})
-                navigate("/user")
+                navigate("/projects")
             })
             .catch((err) => console.error(err));
     }
@@ -78,14 +78,14 @@ export function loginUser(user, navigate){
             console.dir(user)
         
             dispatch({type: SET_USER, payload: user.data})
-            navigate("/user")
+            navigate("/projects")
         })
         .catch((err) => console.error(err));
   }
     
 }
 
-export function logoutUser(user){
+export function logoutUser(){
     fetch("http://localhost:3000/logout", {
         method: "delete",
         headers: {
@@ -102,6 +102,7 @@ export function logoutUser(user){
         })
         .then((json) => {
           console.dir(json);
+          
         })
         .catch((err) => console.error(err));
 }

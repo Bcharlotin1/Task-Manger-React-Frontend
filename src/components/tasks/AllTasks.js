@@ -2,16 +2,16 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { fetchTasks, deleteTask } from '../../actions/taskAction';
-import { Link,  useParams} from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import './Task.css';
 
-export default function TaskDisplay() {
+export default function AllTasks() {
     
     const user = useSelector(state => state.user)
 
-    const { id } = useParams()
+  
     const allTasks = useSelector(state => state.tasks)
-    const projectTasks =  allTasks.filter((task) => task.project_id === id)
+    // const projectTasks =  allTasks.filter((task) => task.project_id === id)
     
     
     const dispatch = useDispatch()
@@ -25,9 +25,9 @@ export default function TaskDisplay() {
         dispatch(fetchTasks())
     }, [])
 
-    console.log(id)
+ 
     function onChange(event) {
-        // debugger
+     
         setToComplete(event.target.value)
         // setIsChecked(!isChecked)
         //complete  is  sesnd thee completion rate and i want this add to the project 
@@ -78,7 +78,7 @@ export default function TaskDisplay() {
                     {/* ----------------------------------- */}
                     <form id="task_form">
                
-                        {projectTasks.map(t => {
+                        {allTasks.map(t => {
 
                             return (
                                 <div>

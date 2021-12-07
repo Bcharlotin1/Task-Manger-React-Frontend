@@ -1,28 +1,27 @@
 
 
-import { useEffect} from 'react';
 import { useForm } from "react-hook-form";
 import { useSelector, useDispatch,  } from 'react-redux'
-import { fetchProjects, updateProject } from '../../actions/projectAction';
+import { updateProject } from '../../actions/projectAction';
 
 
 
 
 export default function ProjectUpdate(params) {
     
+    const user = useSelector(state => state.user)
+
     // const userProjects = useSelector(state => state.user)
     const allProjects = useSelector(state => state.projects)
-    // const projects = allProjects.filter((project) => userProjects.id === project.user_id)
+  
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        dispatch(fetchProjects())
-
-    }, [])
+ 
 
     const preloadedValues = {
         title: 'allProjects[0].title',
         description:' allProjects[0].description'
+
     }
     const { register, handleSubmit } = useForm({
         defaultValues: preloadedValues
@@ -30,10 +29,9 @@ export default function ProjectUpdate(params) {
 
 
     const onSubmit = (data) => {
-        debugger
+    
         console.log(data)
     };
-console.log(params)
 
 
   return(

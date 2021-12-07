@@ -2,26 +2,22 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchProjects, deleteProject } from '../../actions/projectAction';
-import { fetchUser } from '../../actions/userAction';
-import { Link, useNavigate, useParams} from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 
 
 export default function ProjectDisplay() {
   
   
-  const userProjects = useSelector(state => state.user)
+  const user = useSelector(state => state.user)
   const allProjects = useSelector(state => state.projects)
-  const projects = allProjects.filter((project) => userProjects.id === project.user_id)
+  const projects = allProjects.filter((project) => user.id === project.user_id)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
   useEffect(() => {
     dispatch(fetchProjects())
-
-    dispatch(fetchUser())
   }, [])
 
- 
 
   function handleClick(project) {
     dispatch(deleteProject(project, navigate))
@@ -31,7 +27,7 @@ export default function ProjectDisplay() {
       (25 + 70 * Math.random()) + '%,' +
       (85 + 10 * Math.random()) + '%)'
   }
-// debugger
+  console.log(user)
   return (
     <div>
      
@@ -89,7 +85,7 @@ export default function ProjectDisplay() {
                       </div>
                     </div>
                     <div className="project-box-content-header">
-                      <Link to={`/projects/tasks`} lassName="box-content-header">{p.title}
+                      <Link to={`/projects/${p.id}/tasks`} lassName="box-content-header">{p.title}
                       </Link> 
 
                       <p className="box-content-subheader">{p.description}</p>

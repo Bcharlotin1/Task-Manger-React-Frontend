@@ -1,16 +1,18 @@
 import { useState } from "react"
-import { useDispatch } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import { createProject } from "../../actions/projectAction"
 import { useNavigate } from "react-router"
 import '/Users/biancacharlotin/Development/code/React-App/task-manager-frontend/src/Form.css'
 
 export default function ProjectInput() {
     
-    const [title, setTitle] = useState("")
-    
-    const [description, setDescription] = useState("")
+    const user = useSelector(state => state.user)
     const dispatch = useDispatch()
     const navigate = useNavigate()
+
+    const [title, setTitle] = useState("")
+    const [description, setDescription] = useState("")
+  
 
     console.log(description)
 
@@ -20,12 +22,14 @@ export default function ProjectInput() {
         dispatch(createProject({
             title: title,
             description: description,
-            completion_rate: 0
+            completion_rate: 0,
+            user_id: user.id
         }, navigate))
 
         setTitle("")
         setDescription("")
     }
+    
     return (
         <div>
              <div className="projects-section">
