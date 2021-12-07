@@ -55,7 +55,7 @@ export default function TaskDisplay() {
                     <div className="view-actions">
                         
                     </div>
-                    <Link to="/projects/tasks/new">
+                    <Link to={`/projects/${id}/tasks/new`}>
                         <button className="add-btn" title="Add New Project">
                             <svg
                                 className="btn-icon"

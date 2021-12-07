@@ -16,7 +16,8 @@ export default function taskReducer(state=[], action) {
             return state.filter((task) => task !== action.payload) ;
         
         case UPDATE_TASK:
-            return action.payload;
+            const newStateArray = state.filter((project) => project.id !== action.payload.id)
+            return [...newStateArray, action.payload];
 
         default:
             return state;

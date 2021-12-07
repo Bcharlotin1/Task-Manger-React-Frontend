@@ -14,7 +14,7 @@ export default function projectReducer(state=[], action) {
             return state.filter((project) => project !== action.payload) ;
         
         case UPDATE_PROJECT:
-           const newStateArray = state.filter((project) => project.id !== action.payload.id) ;
+           const newStateArray = state.filter((project) => project.id !== action.payload.id)
         
             return [...newStateArray, action.payload]; 
 
