@@ -1,4 +1,4 @@
-import { SET_TASK, ADD_TASK, DELETE_TASK, UPDATE_TASK} from "./constants";
+import { SET_TASK, ADD_TASK, DELETE_TASK} from "./constants";
 
 export function fetchTasks(){
     return dispatch => {
@@ -11,7 +11,7 @@ export function fetchTasks(){
     }
 }
 
-export function createTask(task, navigate){
+export function createTask(tasks, navigate){
     // debugger
     return dispatch => {
         fetch('http://localhost:3000/tasks/',{
@@ -20,13 +20,13 @@ export function createTask(task, navigate){
                 "Content-Type": "application/json",
                 "Accept": "application/json"
             },
-            body: JSON.stringify({task})
+            body: JSON.stringify({tasks})
         })
         .then(r => r.json())
         .then(task => { 
             
             dispatch({type:ADD_TASK, payload: task})})
-            navigate(":id/tasks")
+            navigate(`/projects/tasks`)
            
     }
 }
@@ -44,20 +44,3 @@ export function deleteTask(task, navigate){
     }
 }
 
-export function editTask(task, navigate){
-    return dispatch => {
-        fetch(`http://localhost:3000/tasks/${task.id}`,{
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            body: JSON.stringify(task)
-        })
-        .then(r => r.json())
-        .then(task => { 
-            
-            dispatch({type:UPDATE_TASK, payload: task})})
-            navigate(":id/tasks")
-    }
-}

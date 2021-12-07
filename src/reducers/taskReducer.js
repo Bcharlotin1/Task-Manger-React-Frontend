@@ -1,4 +1,4 @@
-import {SET_TASK, ADD_TASK, DELETE_TASK, UPDATE_TASK} from "../actions/constants";
+import {SET_TASK, ADD_TASK, DELETE_TASK} from "../actions/constants";
 
 
 export default function taskReducer(state=[], action) {
@@ -15,9 +15,7 @@ export default function taskReducer(state=[], action) {
         case DELETE_TASK:
             return state.filter((task) => task !== action.payload) ;
         
-        case UPDATE_TASK:
-            const newStateArray = state.filter((project) => project.id !== action.payload.id)
-            return [...newStateArray, action.payload];
+
 
         default:
             return state;

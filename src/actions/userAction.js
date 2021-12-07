@@ -67,7 +67,6 @@ export function loginUser(user, navigate){
       })
         .then((res) => {
           if (res.ok) {
-            console.log(res.headers.get("Authorization"));
             localStorage.setItem("token", res.headers.get("Authorization"));
             return res.json();
           } else {

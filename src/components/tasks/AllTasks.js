@@ -8,10 +8,17 @@ import './Task.css';
 export default function AllTasks() {
     
     const user = useSelector(state => state.user)
-
-  
     const allTasks = useSelector(state => state.tasks)
-    const projectTasks =  allTasks.filter((task) => task.project_id === user.id)
+    const allProjects = useSelector(state => state.projects)
+
+    const userProject = allProjects.filter((project) => user.id === project.user_id)
+
+
+    const filteredArray  = allTasks.filter(function(task){
+        return userProject.filter(function(userProject){
+           return userProject.id == task.project_id;
+        })
+    });
     
     
     const dispatch = useDispatch()
@@ -19,9 +26,6 @@ export default function AllTasks() {
 
     const [complete, setToComplete] = useState("")
    
-
-
-
 
  
     function onChange(event) {
@@ -59,7 +63,7 @@ export default function AllTasks() {
                     {/* ----------------------------------- */}
                     <form key={uuidv4()} id="task_form">
                
-                        {projectTasks.map(t => {
+                        {filteredArray.map(t => {
 
                             return (
                                 <div>

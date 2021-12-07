@@ -1,17 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router';
-import { fetchTasks, deleteTask } from '../../actions/taskAction';
-import { Link, useParams} from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router';
+import { deleteTask } from '../../actions/taskAction';
+import { Link } from 'react-router-dom';
 import './Task.css';
 
 export default function TaskDisplay() {
     
-
-
     const { id } = useParams()
     const projectTaskId = parseInt(id)
     const allTasks = useSelector(state => state.tasks)
+    
     const projectTasks =  allTasks.filter((task) => (task.project_id === projectTaskId))
     
     
@@ -22,9 +21,7 @@ export default function TaskDisplay() {
    
 
 
-    useEffect(() => {
-        dispatch(fetchTasks())
-    }, [])
+
 
 
     function onChange(event) {
