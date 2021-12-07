@@ -1,7 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { deleteTask } from '../../actions/taskAction';
-import { v4 as uuidv4 } from 'uuid';
 import './Task.css';
 
 export default function AllTasks() {
@@ -56,15 +55,13 @@ export default function AllTasks() {
                         {filteredArray.map(t => {
 
                             return (
-                                <div>
-
-                                    <div key={uuidv4()}>
+                    
+                                    <div key={t.id}>
                                         <input type="checkbox" id={t.id}></input>
                                         <label htmlFor={t.id}>{t.title}</label>
                                         <button className="task_delete_button" onClick={() => { handleClick(t) }}>Delete</button>
                                     </div>
 
-                                </div>
                             )
                         })}
                     </form>

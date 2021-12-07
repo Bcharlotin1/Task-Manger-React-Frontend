@@ -2,7 +2,7 @@
 import { useSelector, useDispatch } from 'react-redux'
 import {  deleteProject } from '../../actions/projectAction';
 import { Link, useNavigate} from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid';
+
 
 
 export default function ProjectDisplay() {
@@ -68,20 +68,14 @@ export default function ProjectDisplay() {
           {/* ---------------------Body------------------------ */}
             {projects.map(p => {
             return (
-              <div key={uuidv4()} >
+              <div key={p.id} >
 
                 <div className="project-box-wrapper">
                   <div className="project-box" style={{ backgroundColor: `${getColor()}` }}>
                     <div className="project-box-header">
                       <span>{Date(p.created_at)}</span>
                       <div className="more-wrapper">
-                        <button className="project-btn-more">
-                          <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="feather feather-more-vertical">
-                            <circle cx={12} cy={12} r={1} />
-                            <circle cx={12} cy={5} r={1} />
-                            <circle cx={12} cy={19} r={1} />
-                          </svg>
-                        </button>
+                    
                       </div>
                     </div>
                     <div className="project-box-content-header">

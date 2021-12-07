@@ -12,7 +12,7 @@ export function fetchTasks(){
 }
 
 export function createTask(task, navigate){
-    // debugger
+    
     return dispatch => {
         fetch('http://localhost:3000/tasks/',{
             method: "POST",

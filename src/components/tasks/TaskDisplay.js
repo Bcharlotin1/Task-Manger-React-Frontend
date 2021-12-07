@@ -2,7 +2,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router';
 import { deleteTask } from '../../actions/taskAction';
 import { Link } from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid';
 import './Task.css';
 
 export default function TaskDisplay() {
@@ -69,7 +68,7 @@ export default function TaskDisplay() {
                             return (
                                 <div>
 
-                                    <div key={uuidv4()}>
+                                    <div key={t.id}>
                                         <input type="checkbox" id={t.id}></input>
                                         <label htmlFor={t.id}>{t.title}</label>
                                         <button className="task_delete_button" onClick={() => { handleClick(t) }}>Delete</button>
