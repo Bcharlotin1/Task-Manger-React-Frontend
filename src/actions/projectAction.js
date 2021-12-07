@@ -33,10 +33,10 @@ export function deleteProject(project, navigate){
         fetch(`http://localhost:3000/projects/${project.id}`,{
             method: "DELETE"  
         })
-        .then(r => {r.json()})
-        .then( project => { 
     
-            console.log(project)
+        .then( r => { 
+    
+            console.log(r)
             dispatch({type:DELETE_PROJECT, payload: project})})
             navigate("/projects")
     }
