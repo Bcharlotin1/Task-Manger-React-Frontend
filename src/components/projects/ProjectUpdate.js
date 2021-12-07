@@ -3,7 +3,7 @@
 import { useForm } from "react-hook-form";
 import { useSelector, useDispatch,  } from 'react-redux'
 import { useParams, useNavigate } from "react-router";
-import { updateProject } from '../../actions/projectAction';
+
 
 
 
@@ -11,11 +11,11 @@ import { updateProject } from '../../actions/projectAction';
 export default function ProjectUpdate() {
     
     const user = useSelector(state => state.user)
-    
+
     const { id } = useParams()
     const currentProjectId = parseInt(id)
     const allProjects = useSelector(state => state.projects)
-    const currentProject = allProjects.find(project => project.id === currentProjectId)
+    const currentProject = allProjects.filter(project => project.id === currentProjectId)
 
    
     const dispatch = useDispatch()
@@ -37,7 +37,7 @@ export default function ProjectUpdate() {
     debugger
         console.log(data)
     };
-console.log(currentProject)
+console.log(allProjects)
 
   return(
       <div>

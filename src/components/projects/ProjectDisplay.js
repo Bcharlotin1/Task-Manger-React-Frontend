@@ -1,7 +1,6 @@
 
-import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchProjects, deleteProject } from '../../actions/projectAction';
+import {  deleteProject } from '../../actions/projectAction';
 import { Link, useNavigate} from 'react-router-dom';
 
 
@@ -14,9 +13,7 @@ export default function ProjectDisplay() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  useEffect(() => {
-    dispatch(fetchProjects())
-  }, [])
+  
 
 
   function handleClick(project) {

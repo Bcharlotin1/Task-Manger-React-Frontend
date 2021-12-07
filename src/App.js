@@ -5,12 +5,11 @@ import './App.css';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchUser } from './actions/userAction';
+import { fetchProjects } from './actions/projectAction';
 
 import Home from './components/Home';
 import UserLogin from './components/users/UserLogin'
 import UserSignup from './components/users/UserSignup'
-import AllTasks from './components/tasks/AllTasks';
-import ProjectUpdate from './components/projects/ProjectUpdate'
 
 import { Route, Routes } from 'react-router-dom';
 
@@ -21,7 +20,10 @@ function App() {
     
     useEffect(() =>{
         dispatch(fetchUser())
+        dispatch(fetchProjects())
     }, [])
+
+   
 
   return (
     <div >

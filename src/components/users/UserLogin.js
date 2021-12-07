@@ -22,7 +22,6 @@ export default function UserSignup() {
                 password: password,
             }, navigate))
 
-            setEmail("")
             setPassword("")
         }else{
             alert("your password must be 8 characters long")
