@@ -15,3 +15,7 @@ export const UPDATE_PROJECT = "UPDATE_PROJECT"
 export const SET_TASK = "SET_TASK"
 export const ADD_TASK = "ADD_TASK"
 export const DELETE_TASK = "DELETE_TASK"
+
+//loading
+
+export const ENABLE_OR_DISABLE_LOADING = "ENABLE_OR_DISABLE_LOADING"

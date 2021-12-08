@@ -2,11 +2,29 @@ import { SET_TASK, ADD_TASK, DELETE_TASK} from "./constants";
 
 export function fetchTasks(){
     return dispatch => {
-        fetch('http://localhost:3000/tasks/')
-        .then(r => r.json())
-        .then(tasks => { 
-    
-            dispatch({type:SET_TASK, payload: tasks})})
+        fetch('http://localhost:3000/tasks/',{
+            headers: {
+            "Content-Type": "application/json",
+            Authorization: localStorage.getItem("token"),
+        },
+    })
+        .then((res) => {
+            if (res.ok) {
+                console.log("yup")
+                return res.json();
+            } else{
+                throw new Error("Unauthorized Request. Must be signed in.")
+                ;
+            }
+        })
+        .then((tasks) => {
+            console.dir(tasks)
+            dispatch({ type: SET_TASK, payload: tasks })
+        })
+        .catch((err) => {
+            console.error(err)
+         
+        });
         
     }
 }
@@ -18,7 +36,8 @@ export function createTask(task, navigate){
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Accept": "application/json"
+                "Accept": "application/json",
+                Authorization: localStorage.getItem("token")
             },
             body: JSON.stringify({task})
         })

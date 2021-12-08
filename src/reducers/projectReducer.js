@@ -3,7 +3,7 @@ import {SET_PROJECTS, ADD_PROJECT, DELETE_PROJECT, UPDATE_PROJECT} from "../acti
 export default function projectReducer(state=[], action) {
     switch(action.type){
         case SET_PROJECTS:
-        
+        // debugger
             return action.payload; 
         
         case ADD_PROJECT:

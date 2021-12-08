@@ -1,26 +1,33 @@
 import { SET_PROJECTS, ADD_PROJECT, DELETE_PROJECT, UPDATE_PROJECT } from "./constants";
 
-export function fetchProjects(navigate){
+export function fetchProjects(navigate) {
     return dispatch => {
         fetch('http://localhost:3000/projects', {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: localStorage.getItem("token"),
-              },
+            },
         })
-        .then((res) => {
-            if (res.ok) {
-              return res.json();
-            } else {
-                navigate("/")
-              return res.json().then((json) => Promise.reject(json));
-            }
-          })
-        .then(projects => { 
-            
-            dispatch({type:SET_PROJECTS, payload: projects})})
+            .then((res) => {
+                if (res.ok) {
+                    console.log("yup")
+                    return res.json();
+                } else{
+                    throw new Error("Unauthorized Request. Must be signed in.")
+                    ;
+                }
+            })
+            .then((projects) => {
+                console.dir(projects)
+                dispatch({ type: SET_PROJECTS, payload: projects })
+            })
+            .catch((err) => {
+                console.error(err)
+             
+            });
     }
 }
+
 
 export function createProject(project, navigate){
     return dispatch => {
@@ -28,7 +35,8 @@ export function createProject(project, navigate){
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Accept": "application/json"
+                "Accept": "application/json",
+                Authorization: localStorage.getItem("token")
             },
             body: JSON.stringify(project)
         })
@@ -60,7 +68,8 @@ export function updateProject(project, navigate){
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
-                "Accept": "application/json"
+                "Accept": "application/json",
+                Authorization: localStorage.getItem("token")
             },
             body: JSON.stringify(project)
         })

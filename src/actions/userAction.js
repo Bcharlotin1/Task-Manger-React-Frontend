@@ -1,4 +1,4 @@
-import { SET_USER, GET_USER } from "./constants";
+import { SET_USER, GET_USER, SET_TASK, SET_PROJECTS, ENABLE_OR_DISABLE_LOADING } from "./constants";
 
 
 export function fetchUser(){
@@ -18,7 +18,14 @@ export function fetchUser(){
           })
           .then((user) => {
               console.dir(user)
+              
               dispatch({type:GET_USER, payload: user})
+
+              dispatch({
+                type: ENABLE_OR_DISABLE_LOADING,
+                payload: {isLoading: false, msg: "loaded"}
+            })
+              
           })
           .catch((err) => console.error(err));
            
@@ -47,7 +54,7 @@ export function createUser(user, navigate){
             })
             .then((user) => {
                 console.dir(user)
-                debugger
+            
                 dispatch({type: SET_USER, payload: user.data})
                 navigate("/projects")
             })
@@ -75,8 +82,11 @@ export function loginUser(user, navigate){
         })
         .then((user) => {
             console.dir(user)
-        
+          
             dispatch({type: SET_USER, payload: user.data})
+            dispatch({ type: SET_PROJECTS, payload: user.data.projects
+            })
+            dispatch({type:SET_TASK, payload: user.data.tasks})
             navigate("/projects")
         })
         .catch((err) => console.error(err));
