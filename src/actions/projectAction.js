@@ -1,12 +1,24 @@
 import { SET_PROJECTS, ADD_PROJECT, DELETE_PROJECT, UPDATE_PROJECT } from "./constants";
 
-export function fetchProjects(){
+export function fetchProjects(navigate){
     return dispatch => {
-        fetch('http://localhost:3000/projects')
-        .then(r => r.json())
-        .then( ({data}) => { 
+        fetch('http://localhost:3000/projects', {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: localStorage.getItem("token"),
+              },
+        })
+        .then((res) => {
+            if (res.ok) {
+              return res.json();
+            } else {
+                navigate("/")
+              return res.json().then((json) => Promise.reject(json));
+            }
+          })
+        .then(projects => { 
             
-            dispatch({type:SET_PROJECTS, payload: data.map(obj => (obj.attributes))})})
+            dispatch({type:SET_PROJECTS, payload: projects})})
     }
 }
 
@@ -54,7 +66,7 @@ export function updateProject(project, navigate){
         })
         .then(r => r.json())
         .then( project => { 
-            
+    
             dispatch({type:UPDATE_PROJECT, payload: project})})
             navigate("/projects")
     }

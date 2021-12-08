@@ -1,6 +1,6 @@
 
 
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchUser } from './actions/userAction';
@@ -17,12 +17,13 @@ import './App.css';
 
 
 function App() {
+  const navigate = useNavigate()
   const dispatch = useDispatch()
 
     
     useEffect(() =>{
         dispatch(fetchUser())
-        dispatch(fetchProjects())
+        dispatch(fetchProjects(navigate))
         dispatch(fetchTasks())
     }, [])
  
@@ -37,7 +38,8 @@ function App() {
         <Route path="/login" element={<UserLogin />} />
         <Route path="/signup" element={<UserSignup />} />
         <Route path="projects/*" element={<PageLayout />} />
-     
+        <Route render={() => navigate("/projects")} />
+
       </Routes>
     </div>
   );
