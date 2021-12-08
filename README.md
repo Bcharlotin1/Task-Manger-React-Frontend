@@ -18,12 +18,16 @@ This app runs on *http://localhost:3001/*. This is so that It will not conflict 
 2. Fork and Cone this Repo "Task-Manger-React-Frontend"
 3. Make sure the rails API is running, then Run `yarn start` in your terminal
 
+<<<<<<< HEAD
 ### How To Use
 This app runs on *http://localhost:3001/*. This is so that It will not conflict with the rails backend that runs on http://localhost:3000/",  which needs to run simultaneously.
 
 1. Fork and Clone  Rails API [Task Manger API](https://github.com/Bcharlotin1/Task-Manager-API)
 2. Fork and Cone this Repo "Task-Manger-React-Frontend"
 3. Make sure the rails API is running, then Run `yarn start` in your terminal
+=======
+
+>>>>>>> 42af25b1d16bfe1f82b3c698e3c2e5286b87b8f1
 
 
 ## Available Scripts
