@@ -9,12 +9,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 This is a Task Manager React App where users can signup/log in,create projects and tasks.
 
 This app uses Ruby on Rails for the backend. So this. Repo is dependent on another. 
-Must Fork and Clone [Task Manger API](https://github.com/Bcharlotin1/Task-Manager-API)
+Must Fork and Clone [Task Manager API](https://github.com/Bcharlotin1/Task-Manager-API)
 
 ### How To Use
 This app runs on *http://localhost:3001/*. This is so that It will not conflict with the rails backend that runs on http://localhost:3000/",  which needs to run simultaneously.
 
-1. Fork and Clone  Rails API [Task Manger API](https://github.com/Bcharlotin1/Task-Manager-API)
+1. Fork and Clone  Rails API [Task Manager API](https://github.com/Bcharlotin1/Task-Manager-API)
 2. Fork and Cone this Repo "Task-Manger-React-Frontend"
 3. Make sure the rails API is running, then Run `yarn start` in your terminal
 
