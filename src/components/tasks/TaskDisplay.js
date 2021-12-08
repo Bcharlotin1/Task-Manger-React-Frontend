@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router';
 import { deleteTask } from '../../actions/taskAction';
 import { Link } from 'react-router-dom';
+import { getCurrentDate } from '../../actions/constants';
 import './Task.css';
 
 export default function TaskDisplay() {
@@ -31,7 +32,7 @@ export default function TaskDisplay() {
                 <div className="projects-section-header">
                     <p>Tasks</p>
 
-                    <p className="time">December 12</p>
+                    <p className="time">{getCurrentDate()}</p>
 
                 </div>
                 <div className="projects-section-line">

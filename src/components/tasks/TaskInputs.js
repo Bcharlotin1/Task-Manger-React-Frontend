@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { createTask } from "../../actions/taskAction"
 import { useParams, useNavigate } from "react-router"
+import { getCurrentDate } from "../../actions/constants"
 
 
 export default function TaskInputs() {
@@ -39,7 +40,7 @@ export default function TaskInputs() {
               <div className="projects-section-header">
               <p>New Task</p>
             
-              <p className="time">December 12</p>
+              <p className="time">{getCurrentDate()}</p>
             
               </div>
               <div className="projects-section-line">

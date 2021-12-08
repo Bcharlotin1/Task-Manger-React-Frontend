@@ -571,7 +571,7 @@
  .project-box-footer {
 	 display: flex;
 	 justify-content: space-between;
-	 padding-top: 16px;
+	 padding-top: 30px;
 	 position: relative;
 }
  .project-box-footer:after {

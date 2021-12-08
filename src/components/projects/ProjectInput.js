@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { createProject } from "../../actions/projectAction"
 import { useNavigate } from "react-router"
+import { getCurrentDate } from "../../actions/constants"
 import '/Users/biancacharlotin/Development/code/React-App/task-manager-frontend/src/Form.css'
 
 export default function ProjectInput() {
@@ -36,7 +37,7 @@ export default function ProjectInput() {
               <div className="projects-section-header">
               <p>New Project</p>
             
-              <p className="time">December 12</p>
+              <p className="time">{getCurrentDate()}</p>
             
               </div>
               <div className="projects-section-line">
