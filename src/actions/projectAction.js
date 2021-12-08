@@ -4,9 +4,9 @@ export function fetchProjects(){
     return dispatch => {
         fetch('http://localhost:3000/projects')
         .then(r => r.json())
-        .then( projects => { 
-         
-            dispatch({type:SET_PROJECTS, payload: projects})})
+        .then( ({data}) => { 
+            
+            dispatch({type:SET_PROJECTS, payload: data.map(obj => (obj.attributes))})})
     }
 }
 

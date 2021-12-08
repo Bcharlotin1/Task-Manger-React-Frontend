@@ -27,7 +27,7 @@ export default function ProjectDisplay() {
       (85 + 10 * Math.random()) + '%)'
   }
 
-
+// debugger
   return (
     <div>
      

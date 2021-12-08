@@ -11,7 +11,13 @@ export default function AllTasks() {
 
     const userProject = allProjects.filter((project) => user.id === project.user_id)
 
-
+    // let userTask = []
+    
+    // function Tasks() {
+    //     return (userProject.map(project =>{ project.tasks
+    //         userTask.push(project.tasks)
+    //     }))
+    // }
     const filteredArray  = allTasks.filter(function(task){
         return userProject.filter(function(userProject){
            return userProject.id === task.project_id;
@@ -28,7 +34,7 @@ export default function AllTasks() {
         dispatch(deleteTask(task, navigate))
     }
 
- 
+ console.log(userTasks)
 
     return (
 
