@@ -1,0 +1,84 @@
+body {
+    display: flex;
+    height: 100vh;
+    min-height: 35rem;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Josefin Sans', sans-serif;
+}
+.card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    transform: translate(-50%, -50%);
+}
+.card-wrap {
+    position: relative;
+    margin: 0 auto;
+}
+@media (--pc) {
+    .card-wrap {
+        max-width: 450px;
+   }
+}
+.card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.card-title {
+    font-weight: bold;
+    font-size: 1.8rem;
+}
+
+.btn {
+    color: #fff !important;
+    width: 10em;
+    transition: all 0.4s;
+    border-radius: 20px;
+    border: 2px solid transparent;
+    
+}
+
+.btn.btn-back:hover {
+    border: 0 !important;
+}
+
+.card--welcome {
+    z-index: 3;
+}
+.card--welcome .card-title {
+    color: pink;
+   
+}
+.card--welcome .btn-wrap {
+    display: flex;
+    flex-direction: column;
+}
+.card--welcome .btn {
+    color: #fff;
+    transition: all 0.3s;
+    text-decoration: none;
+}
+.card--welcome .btn:hover {
+    background-color: pink;
+    font-weight: bold;
+}
+.card--welcome .btn-register {
+    margin-bottom: 0.8em;
+    background-color: pink;
+}
+.card--welcome .btn-register:hover {
+    color: white;
+}
+.card--welcome .btn-login {
+    background-color: pink;
+}
+
+
+
