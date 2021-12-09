@@ -28,7 +28,7 @@ export default function SideNavLayout() {
             </NavLink>
 
             
-            <NavLink to="/" onClick={()=>(handleLogout())}>
+            <NavLink to="/" onClick={()=>(handleLogout())} className="app-sidebar-link">
             <svg className="link-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 17l5-5-5-5M19.8 12H9M10 3H4v18h6"/></svg>
             </NavLink>
 

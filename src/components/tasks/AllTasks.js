@@ -1,6 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { deleteTask } from '../../actions/taskAction';
 import { getCurrentDate } from '../../actions/constants';
 import './Task.css';
 
@@ -20,14 +19,10 @@ export default function AllTasks() {
     });
     
     
-    const dispatch = useDispatch()
+   
     const navigate = useNavigate()
 
 
-    function handleClick(task) {
-
-        dispatch(deleteTask(task, navigate))
-    }
 
 
 
@@ -60,7 +55,6 @@ export default function AllTasks() {
                                     <div key={t.id}>
                                         <input type="checkbox" id={t.id}></input>
                                         <label htmlFor={t.id}>{t.title}</label>
-                                        <button className="task_delete_button" onClick={() => { handleClick(t) }}>Delete</button>
                                     </div>
 
                             )

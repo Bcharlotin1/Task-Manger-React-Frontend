@@ -16,11 +16,12 @@ import './App.css';
 
 
 
-
 function App() {
   
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const loading = useSelector(state => state.loading)
+  const userExsists  = useSelector((state) => Object.keys(state.user).length > 0)
 
     
     useEffect(() =>{
@@ -29,9 +30,12 @@ function App() {
         dispatch(fetchTasks())
     }, [])
 
-    const loading = useSelector(state => state.loading)
-    const userExsists  = useSelector((state) => Object.keys(state.user).length > 0)
-    console.log(loading)
+  
+
+    function RequireAuth(){
+      return((loading.isLoading && userExsists)? <PageLayout/> : <Navigate to="/" />
+      )}
+    console.log(loading.isLoading)
 
     
   return (
@@ -41,8 +45,10 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<UserLogin />} />
         <Route path="/signup" element={<UserSignup />} />
+
+        <Route element={<RequireAuth />}>
         <Route path="projects/*" element={<PageLayout />} />
-        <Route render={<Navigate replace to="/projects" />} />
+        </Route>
 
       </Routes>
     </div>
