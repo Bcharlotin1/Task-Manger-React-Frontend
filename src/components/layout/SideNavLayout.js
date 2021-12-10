@@ -1,10 +1,9 @@
-import {  NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logoutUser } from '../../actions/userAction';
 
 export default function SideNavLayout() {
     
-   
     const dispatch = useDispatch()
 
     function handleLogout(){
