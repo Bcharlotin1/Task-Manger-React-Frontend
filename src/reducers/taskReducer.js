@@ -15,8 +15,6 @@ export default function taskReducer(state=[], action) {
         case DELETE_TASK:
             return state.filter((task) => task !== action.payload) ;
         
-
-
         default:
             return state;
     }
