@@ -12,6 +12,7 @@ import Home from './components/Home';
 import UserLogin from './components/users/UserLogin';
 import UserSignup from './components/users/UserSignup';
 import PageLayout from './components/layout/PageLayout';
+import Loading from './components/Loading';
 import './App.css';
 
 
@@ -26,31 +27,52 @@ function App() {
     
     useEffect(() =>{
         dispatch(fetchUser())
-        dispatch(fetchProjects(navigate))
+        dispatch(fetchProjects())
         dispatch(fetchTasks())
     }, [])
 
   
 
-    function RequireAuth(){
-      return((loading.isLoading && userExsists)? <PageLayout/> : <Navigate to="/" />
-      )}
-    console.log(loading.isLoading)
+    // function RequireAuth(){
+    //   if (loading.isLoading === false){
+    //      if (userExsists === true){
+    //       return <Navigate to="/projects" />
+    //      }else{
+    //        return <Navigate to="/" />
+    //      }
+    //   }else{
+    //     return <Loading />
+    //   }
+      
+    // }
 
-    
+    function UserLoggedIn(){
+      if (userExsists){
+        return <PageLayout />
+      }else{
+        return <Navigate to="/" />
+      }
+
+    }
+    console.log(userExsists)
+
+
   return (
     <div >
   
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<UserLogin />} />
-        <Route path="/signup" element={<UserSignup />} />
 
-        <Route element={<RequireAuth />}>
-        <Route path="projects/*" element={<PageLayout />} />
-        </Route>
-
-      </Routes>
+      {!loading.isLoading ?
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<UserLogin />} />
+          <Route path="/signup" element={<UserSignup />} />
+          
+          <Route path="projects/*" element={<UserLoggedIn />} /> 
+          
+        </Routes> : <Loading />
+      }
+      
+      
     </div>
   );
 }

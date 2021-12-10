@@ -3,6 +3,7 @@ import { SET_USER, GET_USER, SET_TASK, SET_PROJECTS, ENABLE_OR_DISABLE_LOADING }
 
 export function fetchUser(){
     return dispatch => {
+
         fetch('http://localhost:3000/current_user',  
        { headers: {
             "Content-Type": "application/json",
@@ -13,7 +14,13 @@ export function fetchUser(){
             if (res.ok) {
               return res.json();
             } else if (res.status === "401") {
+              
+              dispatch({
+                type: ENABLE_OR_DISABLE_LOADING,
+                payload: {isLoading: false, msg: "loaded"}
+            })
               throw new Error("Unauthorized Request. Must be signed in.");
+              
             }
           })
           .then((user) => {
@@ -27,7 +34,14 @@ export function fetchUser(){
             })
               
           })
-          .catch((err) => console.error(err));
+          .catch((err) => {
+            
+            dispatch({
+              type: ENABLE_OR_DISABLE_LOADING,
+              payload: {isLoading: false, msg: "loaded"}
+          })
+           
+            });
            
     }
 }
