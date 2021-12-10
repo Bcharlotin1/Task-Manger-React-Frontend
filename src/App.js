@@ -19,11 +19,9 @@ import './App.css';
 
 function App() {
 
-
   const dispatch = useDispatch()
   const loading = useSelector(state => state.loading)
   const userExsists = useSelector((state) => Object.keys(state.user).length > 0)
-
 
   useEffect(() => {
     dispatch(fetchUser())
@@ -31,19 +29,16 @@ function App() {
     dispatch(fetchTasks())
   }, [])
 
-
   function UserLoggedIn() {
     if (userExsists) {
       return <PageLayout />
     } else {
       return <Navigate to="/" />
     }
-
   }
  
   return (
     <div >
-
       {!loading.isLoading ?
         <Routes>
           <Route path="/" element={<Home />} />
@@ -52,7 +47,6 @@ function App() {
           <Route path="projects/*" element={<UserLoggedIn />} />
         </Routes> : <Loading />
       }
-
     </div>
   );
 }
