@@ -61,7 +61,7 @@ export default function TaskDisplay() {
                     </Link>
                     </div>
 
-                    {/* ----------------------------------- */}
+                  
                     <form id="task_form">
                
                         {projectTasks.map(t => {

@@ -1,9 +1,10 @@
-import { useState } from "react"
-import { useSelector, useDispatch } from "react-redux"
-import { createProject } from "../../actions/projectAction"
-import { useNavigate } from "react-router"
-import { getCurrentDate } from "../../actions/constants"
-import '/Users/biancacharlotin/Development/code/React-App/task-manager-frontend/src/Form.css'
+import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { createProject } from '../../actions/projectAction';
+import { useNavigate } from 'react-router';
+import { getCurrentDate } from '../../actions/constants';
+import '/Users/biancacharlotin/Development/code/React-App/task-manager-frontend/src/Form.css';
+
 
 export default function ProjectInput() {
     
@@ -14,16 +15,12 @@ export default function ProjectInput() {
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
   
-
-    console.log(description)
-
     function handleSubmit(event){
         event.preventDefault()
      
         dispatch(createProject({
             title: title,
             description: description,
-            completion_rate: 0,
             user_id: user.id
         }, navigate))
 
@@ -55,7 +52,6 @@ export default function ProjectInput() {
                     <label>Title</label>
                     <input 
                     type="text" 
-                    
                     placeholder="Your title.." 
                     value={title}
                     onChange={(event) => setTitle(event.target.value)}/>

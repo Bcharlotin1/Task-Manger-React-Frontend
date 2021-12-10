@@ -1,6 +1,6 @@
 import { SET_PROJECTS, ADD_PROJECT, DELETE_PROJECT, UPDATE_PROJECT } from "./constants";
 
-export function fetchProjects(navigate) {
+export function fetchProjects() {
     return dispatch => {
         fetch('http://localhost:3000/projects', {
             headers: {
@@ -53,7 +53,6 @@ export function deleteProject(project, navigate){
         fetch(`http://localhost:3000/projects/${project.id}`,{
             method: "DELETE"  
         })
-    
         .then( r => { 
     
             console.log(r)

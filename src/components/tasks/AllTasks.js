@@ -1,5 +1,4 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router';
+import { useSelector } from 'react-redux';
 import { getCurrentDate } from '../../actions/constants';
 import './Task.css';
 
@@ -18,13 +17,6 @@ export default function AllTasks() {
         })
     });
     
-    
-   
-    const navigate = useNavigate()
-
-
-
-
 
     return (
 
@@ -38,29 +30,26 @@ export default function AllTasks() {
                 </div>
                 <div className="projects-section-line">
 
-                    <div className="view-actions">
-                        
-                    </div>
-                  
-                     
-                    </div>
+                    <div className="view-actions"></div>
 
-                    {/* ----------------------------------- */}
-                    <form id="task_form">
-               
-                        {filteredArray.map(t => {
-
-                            return (
-                    
-                                    <div key={t.id}>
-                                        <input type="checkbox" id={t.id}></input>
-                                        <label htmlFor={t.id}>{t.title}</label>
-                                    </div>
-
-                            )
-                        })}
-                    </form>
                 </div>
+
+
+                <form id="task_form">
+
+                    {filteredArray.map(t => {
+
+                        return (
+
+                            <div key={t.id}>
+                                <input type="checkbox" id={t.id}></input>
+                                <label htmlFor={t.id}>{t.title}</label>
+                            </div>
+
+                        )
+                    })}
+                </form>
+            </div>
         </div>
     )
 }

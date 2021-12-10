@@ -24,7 +24,7 @@ export default function TaskInputs() {
         dispatch(createTask({
             title: title,
             project_id: currentProject.id,
-            completion_rate: 25
+            
             
            
         }, navigate))

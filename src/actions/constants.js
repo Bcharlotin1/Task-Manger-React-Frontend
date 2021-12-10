@@ -37,15 +37,3 @@ export function getCurrentDate(){
     return `${months[month - 1]} ${date}`
     }
 
-    // export function getOldDate(createdAt){
-        
-    //     const oldDate = Date(createdAt)
-    //     const date = oldDate.getDate();
-    //     const month = oldDate.getMonth() + 1;
-       
-    //     const months = [ "January", "February", "March", "April", "May", "June", 
-    //            "July", "August", "September", "October", "November", "December" ];
-    
-      
-    //     return `${months[month - 1]} ${date}`
-    //     }

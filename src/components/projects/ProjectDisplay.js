@@ -1,9 +1,7 @@
-
 import { useSelector, useDispatch } from 'react-redux'
 import { deleteProject } from '../../actions/projectAction';
 import { Link, useNavigate} from 'react-router-dom';
 import { getCurrentDate } from '../../actions/constants';
-
 
 
 export default function ProjectDisplay() {

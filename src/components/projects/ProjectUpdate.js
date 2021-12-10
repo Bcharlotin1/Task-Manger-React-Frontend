@@ -1,12 +1,7 @@
-
-
 import { useForm } from 'react-hook-form';
 import { useSelector, useDispatch,  } from 'react-redux';
 import { useParams, useNavigate } from 'react-router';
 import {  updateProject } from '../../actions/projectAction';
-
-
-
 
 
 export default function ProjectUpdate() {
