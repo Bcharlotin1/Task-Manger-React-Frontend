@@ -1,4 +1,4 @@
-import { SET_USER, GET_USER } from "../actions/constants";
+import { GET_USER } from "../actions/constants";
 
 export default function userReducer(state={}, action) {
     
